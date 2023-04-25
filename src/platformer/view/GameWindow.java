@@ -18,6 +18,8 @@ public class GameWindow extends JFrame
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.add(gamePanel);
 		gameFrame.setLocationRelativeTo(null);
+		gameFrame.setResizable(false);
+		gameFrame.pack();
 		gameFrame.setVisible(true);
 		
 		
