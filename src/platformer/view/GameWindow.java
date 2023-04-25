@@ -14,7 +14,7 @@ public class GameWindow extends JFrame
 	{
 		gameFrame = new JFrame();
 		
-		gameFrame.setSize(400, 400);
+		
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.add(gamePanel);
 		gameFrame.setLocationRelativeTo(null);
