@@ -1,6 +1,8 @@
 package platformer.view;
 
 import java.awt.Color;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
 import javax.swing.JFrame;
 
@@ -21,7 +23,21 @@ public class GameWindow extends JFrame
 		gameFrame.setResizable(false);
 		gameFrame.pack();
 		gameFrame.setVisible(true);
-		
+		gameFrame.addWindowFocusListener(new WindowFocusListener() 
+				{
+
+					@Override
+					public void windowGainedFocus(WindowEvent e) {
+						
+						
+					}
+
+					@Override
+					public void windowLostFocus(WindowEvent e) {
+						gamePanel.getGame().windowFocusLost();					
+					}
+			
+				});
 		
 	}
 	

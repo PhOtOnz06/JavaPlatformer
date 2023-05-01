@@ -5,8 +5,7 @@ import static utilz.Constants.Directions.LEFT;
 import static utilz.Constants.Directions.RIGHT;
 import static utilz.Constants.Directions.UP;
 import static utilz.Constants.PlayerConstants.GetSpriteAmount;
-import static utilz.Constants.PlayerConstants.IDLE;
-import static utilz.Constants.PlayerConstants.RUNNING;
+import static utilz.Constants.PlayerConstants.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -15,6 +14,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import utilz.LoadSave;
+
 public class Player extends Entity 
 {
 	private BufferedImage[][] animations;
@@ -22,8 +23,13 @@ public class Player extends Entity
 	private int aniIndex;
 	private int aniSpeed = 15;
 	private int playerAction = IDLE;
-	private int playerDir = -1;
+	private boolean left;
+	private boolean up;
+	private boolean right;
+	private boolean down;
 	private boolean moving = false;
+	private boolean attacking = false; 
+	private float playerSpeed = 2.0f; 
 	
 	public Player(float x, float y)
 	{
@@ -34,9 +40,10 @@ public class Player extends Entity
 	
 	public void update()
 	{
+		updatePostion();
 		updateAnimationTick();
 		setAnimation();
-		updatePostion();
+		
 	}
 	
 	public void render(Graphics g)
@@ -46,37 +53,39 @@ public class Player extends Entity
 	}
 	
 	
-	public void setDirection(int direction) 
-	{
-		this.playerDir = direction;
-		moving = true;
-	}
 	
-	public void setMoving(boolean moving)
-	{
-		this.moving = moving;
-	}
+	
+	
 	
 	private void updatePostion() 
 	{
-		if (moving)
-		{
-			switch (playerDir)
+		
+			moving = false;
+			
+			if (left && !right)
 			{
-			case LEFT:
-				x -= 5;
-				break; 
-			case UP:
-				y -= 5;
-				break;
-			case RIGHT:
-				x += 5;
-				break;
-			case DOWN:
-				y += 5;
-				break;
+				x -= playerSpeed;
+				moving = true;
 			}
-		}
+			else if (right && !left)
+			{
+				x += playerSpeed;
+				moving = true;
+			}
+			
+			if (up && !down)
+			{
+				y -= playerSpeed;
+				moving = true;
+			}
+			else if (down && !up)
+			{
+				y += playerSpeed;
+				moving = true;
+			}
+		
+		
+		
 		
 	}
 
@@ -84,6 +93,8 @@ public class Player extends Entity
 
 	private void setAnimation() 
 	{
+		int startAni = playerAction;
+		
 		if (moving)
 		{
 			playerAction = RUNNING;
@@ -93,8 +104,24 @@ public class Player extends Entity
 			playerAction = IDLE;
 		}
 		
+		if (attacking)
+		{
+			playerAction = ATTACK_1;
+		}
+		if (startAni != playerAction)
+		{
+			resetAniTick();
+		}
+		
 	}
 
+
+
+	private void resetAniTick() {
+		aniTick = 0;
+		aniIndex = 0;
+		
+	}
 
 
 	private void updateAnimationTick() 
@@ -108,6 +135,7 @@ public class Player extends Entity
 			if (aniIndex >= GetSpriteAmount(playerAction))
 			{
 				aniIndex = 0;
+				attacking = false;
 			}
 			
 		}
@@ -116,11 +144,7 @@ public class Player extends Entity
 	
 	private void loadAnimations() 
 	{
-		InputStream is = getClass().getResourceAsStream("/player_sprites.png");
-		try 
-		{
-			
-			BufferedImage img = ImageIO.read(is);
+			BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLAS);
 			
 			animations = new BufferedImage[9][6];
 			
@@ -132,26 +156,64 @@ public class Player extends Entity
 					animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40);
 				}
 			}
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			try 
-			{
-				is.close();
-			}
-			catch(IOException e) 
-			{
-				e.printStackTrace();
-			}
-		}
 		
 		
 		
 		
+		
+		
+	}
+	
+	public void resetDirBooleans()
+	{
+		left = false;
+		right = false;
+		up = false;
+		down = false;
+	}
+	
+	public void setAttacking(boolean attacking)
+	{
+		this.attacking = attacking;
+	}
+
+	public boolean isLeft() {
+		return left;
+	}
+
+
+	public void setLeft(boolean left) {
+		this.left = left;
+	}
+
+
+	public boolean isUp() {
+		return up;
+	}
+
+
+	public void setUp(boolean up) {
+		this.up = up;
+	}
+
+
+	public boolean isRight() {
+		return right;
+	}
+
+
+	public void setRight(boolean right) {
+		this.right = right;
+	}
+
+
+	public boolean isDown() {
+		return down;
+	}
+
+
+	public void setDown(boolean down) {
+		this.down = down;
 	}
 	
 	
