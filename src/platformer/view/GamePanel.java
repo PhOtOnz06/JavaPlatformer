@@ -20,6 +20,8 @@ import platformer.controller.Game;
 
 import static utilz.Constants.PlayerConstants.*;
 import static utilz.Constants.Directions.*;
+import static platformer.controller.Game.GAME_HEIGHT;
+import static platformer.controller.Game.GAME_WIDTH;
 
 //test test hope this works
 // another test idk why my repo isnt working
@@ -45,10 +47,12 @@ public class GamePanel extends JPanel
 
 	private void setPanelSize() 
 	{
-		Dimension size = new Dimension(1280, 800);
+		Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
 		this.setMinimumSize(size);
 		this.setPreferredSize(size);
 		this.setMaximumSize(size);
+		System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
+		
 		
 	}
 	
