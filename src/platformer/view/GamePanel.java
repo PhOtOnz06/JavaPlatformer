@@ -23,9 +23,7 @@ import static utilz.Constants.Directions.*;
 import static platformer.controller.Game.GAME_HEIGHT;
 import static platformer.controller.Game.GAME_WIDTH;
 
-//test test hope this works
-// another test idk why my repo isnt working
-//Final test hoping ive got it right
+
 
 
 public class GamePanel extends JPanel
