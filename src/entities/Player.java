@@ -30,6 +30,7 @@ public class Player extends Entity
 	private boolean moving = false;
 	private boolean attacking = false; 
 	private float playerSpeed = 2.0f; 
+	private int[][] lvlData;
 	
 	public Player(float x, float y, int width, int height)
 	{
