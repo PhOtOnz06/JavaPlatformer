@@ -1,6 +1,5 @@
-/platformer/
-/inputs/
+/levels/
 /utilz/
-/.classpath
-/.project
-/entities/
+/outside_sprites.png
+/platformer/
+/level_one_data.png
