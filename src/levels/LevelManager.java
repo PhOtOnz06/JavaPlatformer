@@ -12,6 +12,7 @@ public class LevelManager
 	
 	private Game game;
 	private BufferedImage [] levelSprite;
+	private Level levelOne;
 	
 	
 	
@@ -19,6 +20,7 @@ public class LevelManager
 	{
 		this.game = game;
 		importOutsideSprites();
+		levelOne = new Level(LoadSave.GetLevelData());
 	}
 	
 	
@@ -40,7 +42,16 @@ public class LevelManager
 
 	public void draw(Graphics g)
 	{
-		g.drawImage(levelSprite[2], 0, 0, null);
+		
+		for (int j = 0; j < Game.TILES_IN_HEIGHT; j++)
+		{
+			for (int i = 0; i < Game.TILES_IN_WIDTH; i++)
+			{
+				int index = levelOne.getSpriteIndex(i, j);
+				g.drawImage(levelSprite[index], Game.TILE_SIZE * i, Game.TILE_SIZE * j, Game.TILE_SIZE, Game.TILE_SIZE, null);
+			}
+		}
+		
 	}
 	
 	public void update()
