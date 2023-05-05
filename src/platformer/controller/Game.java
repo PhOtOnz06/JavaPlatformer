@@ -2,8 +2,10 @@ package platformer.controller;
 
 import java.awt.Graphics;
 
-import entities.Player;
-import levels.LevelManager;
+
+import gamestates.GameState;
+import gamestates.Menu;
+import gamestates.Playing;
 import platformer.view.GamePanel;
 import platformer.view.GameWindow;
 
@@ -15,8 +17,9 @@ public class Game implements Runnable
 	private Thread gameThread;
 	private final int FPS_SET = 120;
 	private final int UPS_SET = 200;
-	private Player player;
-	private LevelManager levelManager;
+	
+	private Playing playing;
+	private Menu menu;
 	
 	public final static int TILES_DEFAULT_SIZE = 32;
 	public final static float SCALE = 2f;
@@ -42,9 +45,7 @@ public class Game implements Runnable
 	
 	private void initClasses() 
 	{
-		player = new Player(200, 200, (int) (64 * SCALE), (int) (40 * SCALE));
-		levelManager = new LevelManager(this);
-		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
+		
 		
 	}
 
@@ -57,15 +58,37 @@ public class Game implements Runnable
 	
 	public void update()
 	{
-		player.update();
-		levelManager.update();
+		switch (GameState.state)
+		{
+		case MENU:
+			
+			break;
+		case PLAYING:
+			
+			break;
+		default:
+			break;
+		
+		}
+		
+		
 	}
 	
 	public void render(Graphics g)
 	{
+		switch (GameState.state)
+		{
+		case MENU:
+			
+			break;
+		case PLAYING:
+			
+			break;
+		default:
+			break;
 		
-		levelManager.draw(g);
-		player.render(g);
+		}
+		
 	}
 	
 	@Override
@@ -128,13 +151,10 @@ public class Game implements Runnable
 	
 	public void windowFocusLost()
 	{
-		player.resetDirBooleans();
+		
 	}
 	
-	public Player getPlayer()
-	{
-		return player;
-	}
+	
 	
 	
 	
