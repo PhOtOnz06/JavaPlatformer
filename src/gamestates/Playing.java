@@ -34,20 +34,27 @@ public class Playing extends State implements Statemethods
 
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
+	public void update()
+	{
+		levelManager.update();
+		player.update();
 		
 	}
 
 	@Override
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+	public void draw(Graphics g) 
+	{
+		levelManager.draw(g);
+		player.render(g);
 		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+//		if (e.getButton() == MouseEvent.BUTTON1)
+//		{
+//			player.setAttacking(true);
+//		}
 		
 	}
 
@@ -98,6 +105,11 @@ public class Playing extends State implements Statemethods
 		case KeyEvent.VK_RIGHT:
 			player.setRight(true);
 			break;
+		
+			// get out of game
+			
+		case KeyEvent.VK_BACK_SPACE:
+			GameState.state = GameState.MENU;
 		}
 	}
 
