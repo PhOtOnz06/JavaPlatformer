@@ -1,5 +1,7 @@
 package utilz;
 
+import java.awt.geom.Rectangle2D;
+
 import platformer.controller.Game;
 
 public class HelpMethods 
@@ -41,10 +43,65 @@ public class HelpMethods
 		
 	}
 	
+	public static float GetEntityXPosNextToWall(Rectangle2D.Float hitbox, float xSpeed)
+	{
+		
+		int currentTile = (int)(hitbox.x / Game.TILE_SIZE);
+		
+		if (xSpeed > 0)
+		{
+			// Right
+			int tileXPos = currentTile * Game.TILE_SIZE;
+			int xOffset = (int)(Game.TILE_SIZE - hitbox.width);
+			return tileXPos + xOffset -1;
+			
+		}
+		else
+		{
+			// Left
+			return currentTile * Game.TILE_SIZE;
+		}
+		
+		
+		
+		
+		
+		
+		
+	}
 	
+	public static float GetEntityYPosUnderRoofOrAboveFloor(Rectangle2D.Float hitbox, float airSpeed)
+	{
+		int currentTile = (int)(hitbox.y / Game.TILE_SIZE);
+		if (airSpeed > 0)
+		{
+			//Falling
+			int tileYPos = currentTile * Game.TILE_SIZE;
+			int yOffset = (int)(Game.TILE_SIZE - hitbox.height);
+			return tileYPos + yOffset - 1;
+		}
+		else
+		{
+			//Jumping
+			return currentTile * Game.TILE_SIZE;
+		}
+		
+		
+	}
 	
-	
-	
+	public static boolean IsEntityOnFloor(Rectangle2D.Float hitbox, int[][] lvlData)
+	{
+		// check the pixel below the bottom left and right corners
+		
+		if (!IsSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData))
+		{
+			if (!IsSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	
 	
