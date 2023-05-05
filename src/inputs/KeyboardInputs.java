@@ -44,6 +44,21 @@ public class KeyboardInputs implements KeyListener
 		case KeyEvent.VK_SPACE:
 			gamePanel.getGame().getPlayer().setAttacking(true);
 			break;
+			
+			// Arrow keys below
+			
+		case KeyEvent.VK_UP:
+			gamePanel.getGame().getPlayer().setJump(true);
+			break;
+		case KeyEvent.VK_LEFT:
+			gamePanel.getGame().getPlayer().setLeft(true);
+			break;
+		case KeyEvent.VK_DOWN:
+			gamePanel.getGame().getPlayer().setDown(true);
+			break;
+		case KeyEvent.VK_RIGHT:
+			gamePanel.getGame().getPlayer().setRight(true);
+			break;
 		}
 		
 	}
@@ -66,7 +81,22 @@ public class KeyboardInputs implements KeyListener
 			gamePanel.getGame().getPlayer().setRight(false);
 			break;
 		
-		
+	// Arrow keys below
+			
+		case KeyEvent.VK_UP:
+			gamePanel.getGame().getPlayer().setJump(false);
+			break;
+		case KeyEvent.VK_LEFT:
+			gamePanel.getGame().getPlayer().setLeft(false);
+			break;
+		case KeyEvent.VK_DOWN:
+			gamePanel.getGame().getPlayer().setDown(false);
+			break;
+		case KeyEvent.VK_RIGHT:
+			gamePanel.getGame().getPlayer().setRight(false);
+			break;
+			
+			
 		}
 		
 	}
