@@ -38,13 +38,7 @@ public abstract class Entity
 		
 	}
 	
-//	protected void updateHitbox()
-//	{
-//		hitbox.x = (int) x;
-//		hitbox.y = (int) y;
-//		
-//		
-//	}
+
 	
 	public Rectangle2D.Float getHitbox() 
 	{

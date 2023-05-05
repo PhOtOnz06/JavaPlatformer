@@ -103,11 +103,19 @@ public class MenuButton
 		GameState.state = state;
 	}
 	
+	public Rectangle getBounds() 
+	{
+		return bounds;
+	}
+	
+	
 	public void resetBools()
 	{
 		mouseOver = false;
 		mousePressed = false;
 	}
+
+
 	
 	
 	
