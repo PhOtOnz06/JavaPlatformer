@@ -14,14 +14,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.event.AncestorListener;
 
-import inputs.KeyboardInputs;
-import inputs.MouseInputs;
 import platformer.controller.Game;
+import platformer.inputs.KeyboardInputs;
+import platformer.inputs.MouseInputs;
 
-import static utilz.Constants.PlayerConstants.*;
-import static utilz.Constants.Directions.*;
 import static platformer.controller.Game.GAME_HEIGHT;
 import static platformer.controller.Game.GAME_WIDTH;
+import static platformer.utilz.Constants.Directions.*;
+import static platformer.utilz.Constants.PlayerConstants.*;
 
 
 

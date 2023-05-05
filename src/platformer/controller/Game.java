@@ -2,10 +2,9 @@ package platformer.controller;
 
 import java.awt.Graphics;
 
-
-import gamestates.GameState;
-import gamestates.Menu;
-import gamestates.Playing;
+import platformer.gamestates.GameState;
+import platformer.gamestates.Menu;
+import platformer.gamestates.Playing;
 import platformer.view.GamePanel;
 import platformer.view.GameWindow;
 
