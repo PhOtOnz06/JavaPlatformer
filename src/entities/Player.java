@@ -1,9 +1,7 @@
 package entities;
 
-import static utilz.Constants.Directions.DOWN;
-import static utilz.Constants.Directions.LEFT;
-import static utilz.Constants.Directions.RIGHT;
-import static utilz.Constants.Directions.UP;
+import static utilz.Constants.PlayerConstants;
+import static utilz.HelpMethods.CanMoveHere;
 import static utilz.Constants.PlayerConstants.GetSpriteAmount;
 import static utilz.Constants.PlayerConstants.*;
 
@@ -55,6 +53,10 @@ public class Player extends Entity
 	}
 	
 	
+	public void loadLvlData(int[][] lvlData)
+	{
+		this.lvlData = lvlData;
+	}
 	
 	
 	
@@ -64,29 +66,46 @@ public class Player extends Entity
 		
 			moving = false;
 			
+			if(!left && ! right && !up && !down)
+			{
+				return;
+			}
+				
+			
+			float xSpeed = 0;
+			float ySpeed = 0;
+			
 			if (left && !right)
 			{
-				x -= playerSpeed;
-				moving = true;
+				xSpeed = -playerSpeed;
+				
 			}
 			else if (right && !left)
 			{
-				x += playerSpeed;
-				moving = true;
+				xSpeed = playerSpeed;
+				
 			}
 			
 			if (up && !down)
 			{
-				y -= playerSpeed;
-				moving = true;
+				ySpeed = -playerSpeed;
+				
 			}
 			else if (down && !up)
 			{
-				y += playerSpeed;
-				moving = true;
+				ySpeed = playerSpeed;
+				
 			}
 		
-		
+			
+			if (CanMoveHere(x + xSpeed, y + ySpeed, width, height, lvlData))
+			{
+				this.x += xSpeed;
+				this.y += ySpeed;
+				moving = true;
+			}
+			
+			
 		
 		
 	}
