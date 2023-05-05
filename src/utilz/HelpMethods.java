@@ -5,7 +5,7 @@ import platformer.controller.Game;
 public class HelpMethods 
 {
 	
-	public static boolean CanMoveHere(float x, float y, int width, int height, int[][] lvlData)
+	public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData)
 	{
 		
 		
@@ -33,16 +33,11 @@ public class HelpMethods
 		float xIndex = x / Game.TILE_SIZE;
 		float yIndex = y / Game.TILE_SIZE;
 		
-		int value = lvlData[(int) xIndex][(int) yIndex];
+		int value = lvlData[(int) yIndex][(int) xIndex];
 		
 		if (value >= 48 || value < 0 || value != 11)
-		{
 			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return false;
 		
 	}
 	
