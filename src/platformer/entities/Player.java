@@ -151,7 +151,7 @@ public class Player extends Entity
 	}
 
 
-
+	// makes the characters speed set to a negative number so the character jumps
 	private void jump() 
 	{
 		if(inAir)
