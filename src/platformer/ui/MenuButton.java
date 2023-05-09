@@ -31,7 +31,7 @@ public class MenuButton
 		this.yPos = yPos;
 		this.rowIndex = rowIndex;
 		this.state = state;
-		loadimgs();
+		loadImgs();
 		initBounds();
 		
 		
@@ -45,7 +45,7 @@ public class MenuButton
 	}
 
 
-	private void loadimgs() 
+	private void loadImgs() 
 	{
 		imgs = new BufferedImage[3];
 		BufferedImage temp = LoadSave.GetSpriteAtlas(LoadSave.MENU_BUTTONS);

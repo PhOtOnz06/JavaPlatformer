@@ -40,7 +40,7 @@ class FrameTest
 	}
 
 	@Test
-	void testPokeFrame()
+	void testGameFrame()
 	{
 		assertTrue(testedFrame instanceof JFrame, "GameFrame needs to extend JFrame");
 		Method [] methods = testedFrame.getClass().getDeclaredMethods();
